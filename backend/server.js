@@ -3,12 +3,16 @@ import http from 'http';
 
 const app = express();
 const server = http.createServer(app);
-const index = '../frontend/index.html';
 import { Server } from 'socket.io';
 const io = new Server(server);
 
 app.get('/', (req, res) => {
 	res.sendFile('/Users/hans/repos/express/chat-app/frontend/index.html');
+});
+
+app.get('/style.css', (req, res) => {
+	res.setHeader('Content-Type', 'text/css');
+	res.sendFile('/Users/hans/repos/express/chat-app/frontend/style.css');
 });
 
 io.on('connection', (socket) => {
